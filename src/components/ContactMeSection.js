@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import {
   Box,
@@ -15,10 +15,10 @@ import {
 import * as Yup from 'yup';
 import FullScreenSection from "./FullScreenSection";
 import useSubmit from "../hooks/useSubmit";
-import {useAlertContext} from "../context/alertContext";
+import { useAlertContext } from "../context/alertContext";
 
 const LandingSection = () => {
-  const {isLoading, response, submit} = useSubmit();
+  const { isLoading, response, submit } = useSubmit();
   const { onOpen } = useAlertContext();
 
   const formik = useFormik({
@@ -55,43 +55,39 @@ const LandingSection = () => {
       py={16}
       spacing={8}
     >
-      <VStack w="1024px" p={32} alignItems="flex-start">
+      <VStack w={["100%", "100%", "100%", "1024px"]} p={32} alignItems="flex-start">
         <Heading as="h1" id="contactme-section">
           Contact me
         </Heading>
         <Box p={6} rounded="md" w="100%">
-          <form onSubmit={formik.handleSubmit}>
-            <VStack spacing={4}>
-              <FormControl isInvalid={!!formik.errors.firstName && formik.touched.firstName}>
+          <form onSubmit={formik.handleSubmit} className="form">
+            <VStack spacing={4} w="100%">
+              <FormControl isInvalid={!!formik.errors.firstName && formik.touched.firstName} w="100%">
                 <FormLabel htmlFor="firstName">Name <sup>*</sup></FormLabel>
                 <Input
                   id="firstName"
                   name="firstName"
-                  // value={formik.values.firstName}
-                  // onChange={formik.handleChange}
                   {...formik.getFieldProps("firstName")}
                 />
                 <FormErrorMessage>{formik.errors.firstName}</FormErrorMessage>
               </FormControl>
-              <FormControl isInvalid={!!formik.errors.email && formik.touched.email}>
+              <FormControl isInvalid={!!formik.errors.email && formik.touched.email} w="100%">
                 <FormLabel htmlFor="email">Email Address <sup>*</sup></FormLabel>
                 <Input
                   id="email"
                   name="email"
                   type="email"
-                  // value={formik.values.email}
-                  // onChange={formik.handleChange}
                   {...formik.getFieldProps("email")}
                 />
                 <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
               </FormControl>
-              <FormControl>
+              <FormControl w="100%">
                 <FormLabel htmlFor="type">Type of enquiry <sup>*</sup></FormLabel>
-                <Select 
-                  color="black" 
-                  backgroundColor="white" 
-                  id="type" 
-                  name="type" 
+                <Select
+                  color="black"
+                  backgroundColor="white"
+                  id="type"
+                  name="type"
                   {...formik.getFieldProps("type")}
                 >
                   <option value="hireMe" name="hireMe" >Freelance project proposal</option>
@@ -101,7 +97,7 @@ const LandingSection = () => {
                   <option value="other" name="other" >Other</option>
                 </Select>
               </FormControl>
-              <FormControl isInvalid={!!formik.errors.comment && formik.touched.comment}>
+              <FormControl isInvalid={!!formik.errors.comment && formik.touched.comment} w="100%">
                 <FormLabel htmlFor="comment">Your message <sup>*</sup></FormLabel>
                 <Textarea
                   id="comment"
@@ -111,12 +107,12 @@ const LandingSection = () => {
                 />
                 <FormErrorMessage>{formik.errors.comment}</FormErrorMessage>
               </FormControl>
-              <Button 
-                type="submit" 
-                colorScheme="purple" 
+              <Button
+                type="submit"
+                colorScheme="purple"
                 width="full"
-                isLoading = {isLoading}
-                loadingText = "Submitting"
+                isLoading={isLoading}
+                loadingText="Submitting"
               >
                 Submit
               </Button>
